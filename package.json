@@ -1,0 +1,33 @@
+{
+  "name": "ectoken",
+  "version": "1.0.0",
+  "description": "Token Generator for Edgecast Token-Based Authentication",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rfrench/ectoken.git"
+  },
+  "keywords": [
+    "ectoken",
+    "token",
+    "auth",
+    "edgecast",
+    "vdms"
+  ],
+  "author": "Verizon Digital Media Services",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rfrench/ectoken/issues"
+  },
+  "homepage": "https://github.com/rfrench/ectoken#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.0"
+  }
+}
