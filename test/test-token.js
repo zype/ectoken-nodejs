@@ -28,7 +28,7 @@ describe('ECToken V3', function(){
         ectoken.encrypt('_' + key, params);
       }
       catch(e) {
-        expect(e.message).to.equal('key must be alphanumeric');
+        expect(e.message).to.equal('ValidationError: child "key" fails because ["key" must only contain alpha-numeric characters]');
       }
   });
 
@@ -37,7 +37,7 @@ describe('ECToken V3', function(){
         ectoken.encrypt(undefined, params);
       }
       catch(e) {
-        expect(e.message).to.equal('key and params are required');
+        expect(e.message).to.equal('ValidationError: child "key" fails because ["key" is required]');
       }
   });
 
@@ -46,7 +46,7 @@ describe('ECToken V3', function(){
         ectoken.encrypt(key);
       }
       catch(e) {
-        expect(e.message).to.equal('key and params are required');
+        expect(e.message).to.equal('ValidationError: child "params" fails because ["params" is required]');
       }
   });
 });
