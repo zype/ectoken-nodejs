@@ -31,7 +31,8 @@
   "homepage": "https://github.com/rfrench/ectoken#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^5.1.0"
+    "mocha": "^5.1.0",
+    "std-mocks": "^1.0.1"
   },
   "dependencies": {
     "joi": "^13.1.2"

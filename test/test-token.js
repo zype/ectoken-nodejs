@@ -2,6 +2,7 @@
 
 const chai = require('chai');
 const expect = chai.expect;
+const stdMocks = require('std-mocks');
 const ectoken = require('../index').V3;
 
 describe('ECToken V3', function(){
@@ -21,6 +22,23 @@ describe('ECToken V3', function(){
   it('should successfully decrypt the V3 token created from the customer portal', function() {
     const result = ectoken.decrypt(key, 'yfuuiWuy8LMiNR1Au3b9-LSNln-X5W-enqvNBlhlpwQspOoLlMX4fIecVLTQJTLMGET14FtLxmp8U6zaDSq5eD-gYMHz9V0');
     expect(result).to.equal(params);
+  });
+
+  it('should successfully create a V3 token (verbose = true)', function() {
+    stdMocks.use();
+    token = ectoken.encrypt(key, params, true);
+    stdMocks.restore();
+    const output = stdMocks.flush();
+    expect(output.stdout.length).to.equal(7);
+  });
+
+  it('should successfully decrypt the V3 token (verbose = true)', function() {
+    stdMocks.use();
+    const result = ectoken.decrypt(key, token, true);
+    expect(result).to.equal(params);
+    stdMocks.restore();
+    const output = stdMocks.flush();
+    expect(output.stdout.length).to.equal(7);
   });
 
   it('should fail to create a V3 token when the key is not alphanumeric', function() {
@@ -47,6 +65,33 @@ describe('ECToken V3', function(){
       }
       catch(e) {
         expect(e.message).to.equal('ValidationError: child "params" fails because ["params" is required]');
+      }
+  });
+
+  it('should fail to decrypt the V3 token when the key is not alphanumeric', function() {
+      try {
+        ectoken.decrypt('_' + key, params);
+      }
+      catch(e) {
+        expect(e.message).to.equal('ValidationError: child "key" fails because ["key" must only contain alpha-numeric characters]');
+      }
+  });
+
+  it('should fail to decrypt the V3 token when the key is missing', function() {
+      try {
+        ectoken.decrypt(undefined, token);
+      }
+      catch(e) {
+        expect(e.message).to.equal('ValidationError: child "key" fails because ["key" is required]');
+      }
+  });
+
+  it('should fail to decrypt a V3 token when the token is missing', function() {
+      try {
+        ectoken.decrypt(key);
+      }
+      catch(e) {
+        expect(e.message).to.equal('ValidationError: child "token" fails because ["token" is required]');
       }
   });
 });
