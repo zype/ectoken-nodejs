@@ -15,7 +15,7 @@ const ectoken = require('ectoken').V3;
 const token = ectoken.encrypt('keyvalue', 'ec_expire=1257642471&ec_clientip=11.22.33.1');
 
 // decrypt
-const params = entoken.decrypt('keyvalue', token);
+const params = ectoken.decrypt('keyvalue', token);
 ```
 
 ## License
