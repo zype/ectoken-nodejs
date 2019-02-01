@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.1.0",
+    "nyc": "^13.1.0",
     "std-mocks": "^1.0.1"
   },
   "dependencies": {
